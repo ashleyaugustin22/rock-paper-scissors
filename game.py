@@ -264,7 +264,7 @@ This is not an option. Please try again
             return you_win()
 
 
-
+clear_screen()
 print(start)
 time.sleep(2)
 
