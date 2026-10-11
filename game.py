@@ -17,7 +17,8 @@ GAME OVER
 """)
 
     input("Press ENTER to go to MAIN MENU")
-
+    
+    clear_screen()
     return main_menu()
 def you_win():
     print("""
@@ -25,7 +26,8 @@ YOU WIN!
 
 """)
     input("Press ENTER to go to MAIN MENU")
-
+    
+    clear_screen()
     return main_menu()
 def quit_game(): #COMPLETE
      while True:
@@ -53,16 +55,16 @@ def quit_game(): #COMPLETE
 
 
 class Player:
-    choices = []
-    
 
     def __init__(self, name):
         self.name = name
 
+start = """
+
+ROCK, PAPER, SCISSORS!
 
 
-    def save_choice(self, choice):
-        self.choices.append(choice)
+"""
 
 game_choices = ["ROCK", "PAPER", "SCISSORS"]
 
@@ -123,6 +125,7 @@ def main_menu():
 """
 
     while True:
+        print(start)
         print(main_menu_template)
         option = input("TYPE HERE: ")
 
@@ -132,7 +135,7 @@ def main_menu():
             print("LOADING...")
             time.sleep(3)
             clear_screen()
-            return gameplay()
+            return gameplay(player)
 
         elif option == "2":
             time.sleep(1)
@@ -169,7 +172,7 @@ Good luck and have fun!
                 if option.lower() == "y":
                     time.sleep(1)
                     clear_screen()
-                    return gameplay()
+                    return gameplay(player)
                 if option.lower() == "n":
                     time.sleep(1)
                     clear_screen()
@@ -178,7 +181,7 @@ Good luck and have fun!
         elif option == "3":
             time.sleep(1)
             clear_screen()
-            return quit_game
+            return quit_game()
 
         else:
             print("""
@@ -260,3 +263,19 @@ This is not an option. Please try again
         elif player_score == 5:
             return you_win()
 
+
+
+print(start)
+time.sleep(2)
+
+name = input("""
+What is your name?
+
+Type Here: """)
+
+player = Player(name)
+
+
+time.sleep(2)
+clear_screen()
+print(main_menu())
