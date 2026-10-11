@@ -12,17 +12,21 @@ def you_lose():
     
 YOU LOSE
     
-GAME OVER""")
+GAME OVER
+
+""")
 
     input("Press ENTER to go to MAIN MENU")
 
-    return start()
+    return main_menu()
 def you_win():
     print("""
-YOU WIN!""")
+YOU WIN!
+
+""")
     input("Press ENTER to go to MAIN MENU")
 
-    return start()
+    return main_menu()
 def quit_game(): #COMPLETE
      while True:
         clear_screen()
@@ -37,8 +41,9 @@ def quit_game(): #COMPLETE
             return quit()
     
         elif leave.upper() == "N":
+            time.sleep(1)
             clear_screen()
-            start()
+            return main_menu()
     
         else:
             print("Try Again")
@@ -110,10 +115,82 @@ OPPONENT's Choice
 """
     return game_template_after
 
+def main_menu():
+    main_menu_template = """
+[1] NEW GAME
+[2] INSTRUCTIONS
+[3] QUIT
+"""
+
+    while True:
+        print(main_menu_template)
+        option = input("TYPE HERE: ")
+
+        if option == "1":
+            time.sleep(1)
+            clear_screen()
+            print("LOADING...")
+            time.sleep(3)
+            clear_screen()
+            return gameplay()
+
+        elif option == "2":
+            time.sleep(1)
+            clear_screen()
+            instructions = """
+Welcome to ROCK, PAPER, SCISSORS!
+
+HOW TO PLAY:
+============
+
+You will be given three options against your opponent:
+
+[1] ROCK
+[2] PAPER
+[3] SCISSORS
+
+- Type in the NUMBER of the option you are choosing to reveal both
+  you and your opponents choice.
+
+- Whoever wins that round will earn 1 point until one person reaches 5 points.
+
+- And whoever reaches 5 points wins the game!
+
+Good luck and have fun!
+
+
+
+"""
+            while True:
+                print(instructions)
+                time.sleep(3)
+                option = input("Ready to begin? Y/N (N will send you back to the main menu!)")
+
+                if option.lower() == "y":
+                    time.sleep(1)
+                    clear_screen()
+                    return gameplay()
+                if option.lower() == "n":
+                    time.sleep(1)
+                    clear_screen()
+                    return main_menu()
+
+        elif option == "3":
+            time.sleep(1)
+            clear_screen()
+            return quit_game
+
+        else:
+            print("""
+This is not an option. Please try again
+""")
+            time.sleep(2)
+            clear_screen()            
+
 def gameplay(player):
     player_score = 0
     npc_score = 0
-    
+
     while player_score < 5 and npc_score < 5:
         print(game_template_before(player, player_score, npc_score))
         player_choice = input("""
@@ -178,11 +255,8 @@ This is not an option. Please try again
             clear_screen()
 
         if npc_score == 5:
+            return you_lose()
             
-        elif
+        elif player_score == 5:
+            return you_win()
 
-
-
-
-test = Player("Ashley")
-print(easy_npc(test))
